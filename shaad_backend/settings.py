@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'admin_panel',
+    'students_panel',
+    'wing_panel',
+    'rest_framework',
+
 ]
 
 MIDDLEWARE = [
@@ -80,6 +85,17 @@ DATABASES = {
 }
 
 
+# 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -113,8 +129,18 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
-
+# for static files 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR / 'main_static')
+
+# for medai files
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR / 'main_media')
+
+
+# for excel files maanging data 
+EXCEL_FILES_URL = 'excelData/'
+EXCEL_FILES_ROOT = os.path.join(BASE_DIR / 'data_bank')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
